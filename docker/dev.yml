@@ -1,0 +1,11 @@
+version: '2.4'
+services:
+    client:
+        build:
+            target: npm
+        entrypoint: ["npm", "run", "dev"]
+        volumes:
+            - ../src:/home/dockeruser/project/src
+        env_file:
+            - .dev.env
+            - .local.env
