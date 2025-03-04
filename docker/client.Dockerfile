@@ -1,6 +1,7 @@
-FROM ubuntu:20.04 as npm
+FROM ubuntu:20.04 AS npm
 
 ARG SPOTIFY_CLIENT_ID
+ARG REDIRECT_URI
 ARG API_HOST
 
 USER root
@@ -9,9 +10,9 @@ RUN apt-get update && apt-get -y install \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_22.x | bash -
 
-RUN apt-get install nodejs \
+RUN apt-get install nodejs -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -g 449 dockeruser && \
@@ -20,6 +21,7 @@ RUN groupadd -g 449 dockeruser && \
 USER dockeruser
 
 ENV SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+ENV REDIRECT_URI=${REDIRECT_URI}
 ENV API_HOST=${API_HOST}
 
 RUN mkdir /home/dockeruser/project
@@ -41,11 +43,24 @@ RUN mkdir dist
 RUN npm run build
 
 
-FROM httpd:2.4.39 AS apache
+FROM httpd:2.4.62 AS apache
+
+ARG SSL_KEY
+ARG SSL_CERT
+ARG SERVER_NAME
+
+ENV SSL_KEY=${SSL_KEY}
+ENV SSL_CERT=${SSL_CERT}
+ENV SERVER_NAME=${SERVER_NAME}
+
+RUN mkdir /usr/local/apache2/ssl
+
+RUN echo "$SSL_CERT" > /usr/local/apache2/ssl/cert.crt
+RUN echo "$SSL_KEY" > /usr/local/apache2/ssl/key.key
 
 COPY ./apache/httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY ./apache/.htaccess /usr/local/apache2/htdocs/
 
 COPY --from=npm /home/dockeruser/project/dist /usr/local/apache2/htdocs/
 
-EXPOSE 3000
+EXPOSE 80
+EXPOSE 443

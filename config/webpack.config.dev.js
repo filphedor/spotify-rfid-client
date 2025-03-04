@@ -20,7 +20,7 @@ module.exports = {
     },
     'devtool': 'inline-source-map',
     'devServer': {
-        'static': path.resolve(__dirname, '../public'),
+        'static': path.resolve(__dirname, '../dev'),
         'port': 3000,
         historyApiFallback: true
     },
@@ -30,6 +30,7 @@ module.exports = {
     'plugins': [
         new webpack.EnvironmentPlugin([
             'SPOTIFY_CLIENT_ID',
+            'REDIRECT_URI',
             'API_HOST'
         ]),
         new MiniCssExtractPlugin({

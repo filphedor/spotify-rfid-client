@@ -1,11 +1,11 @@
+# env
+.local.env
+.env
+
 # Node.js
 node_modules/
 npm-debug.log
 yarn-error.log
-
-# Three.js
-build/
-dist/
 
 # Visual Studio Code
 .vscode/
@@ -13,6 +13,3 @@ dist/
 
 # macOS
 .DS_Store
-
-#local env
-.local.env

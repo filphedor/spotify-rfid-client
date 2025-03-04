@@ -53,6 +53,7 @@ module.exports = {
     'plugins': [
         new webpack.EnvironmentPlugin([
             'SPOTIFY_CLIENT_ID',
+            'REDIRECT_URI',
             'API_HOST'
         ]),
         new MiniCssExtractPlugin({

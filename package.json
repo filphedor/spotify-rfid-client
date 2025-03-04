@@ -1,5 +1,5 @@
 {
-  "name": "chatty",
+  "name": "spotify-rfid-client",
   "version": "1.0.1",
   "scripts": {
     "build": "npm run compile && npm run copy",

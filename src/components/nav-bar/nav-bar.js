@@ -43,7 +43,7 @@ const NavBar = function() {
     }, []);
 
     const logIn = function() {
-        spotifyService.authenticate('http://localhost:3000/auth');
+        spotifyService.authenticate(process.env.REDIRECT_URI);
     };
 
     const logOut = function() {

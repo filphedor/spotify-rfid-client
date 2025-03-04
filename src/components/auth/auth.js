@@ -27,7 +27,7 @@ let Auth = function() {
 
 
     let finishAuth = async function() {
-        await spotifyService.setUpToken('http://localhost:3000/auth', code);
+        await spotifyService.setUpToken(process.env.REDIRECT_URI, code);
 
         let fullToken = spotifyService.getFullToken();
 
