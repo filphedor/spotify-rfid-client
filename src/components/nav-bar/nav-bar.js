@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 
 import Dependencies from '/util/dependencies';
 
+import Auth from '/components/auth/auth'
 
 const NavBar = function() {
     const [user, setUser] = useState(null);
@@ -55,7 +56,7 @@ const NavBar = function() {
             return (
                 <>
                     <div className={'nav-bar__user'}>
-                        {user.display_name}
+                        {user}
                     </div>
                     <div className={'nav-bar__log-in'} onClick={logOut}>
                         {'Log Out'}
@@ -74,8 +75,9 @@ const NavBar = function() {
     return (
         <div className={'nav-bar'}>
             <div className={'nav-bar__spacer'}></div>
-            <div className={'nav-bar__auth'}>{getUserSection()}</div>
-            <div className={'nav-bar__api-connected'} onClick={setUpApiConnected}>{isApiConnected.toString()}</div>
+            <div className={'nav-bar__auth'}>
+                <Auth/>
+            </div>
         </div>
     )
 };

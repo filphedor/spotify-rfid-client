@@ -20,7 +20,7 @@ module.exports = {
     },
     'devtool': 'inline-source-map',
     'devServer': {
-        'static': path.resolve(__dirname, '../dev'),
+        'static': path.resolve(__dirname, '../public'),
         'port': 3000,
         historyApiFallback: true
     },

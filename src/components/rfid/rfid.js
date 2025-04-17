@@ -1,4 +1,4 @@
-import './radio.scss';
+import './rfid.scss';
 
 import React, { useState, useEffect } from "react";
 
@@ -15,10 +15,8 @@ let SpotifyRadio = function() {
     const notificationService = Dependencies.getDependency('notificationService');
 
     return (
-        <div className={'radio'}>
-            <div className={'radio__search'}>
-                <Search/>
-            </div>
+        <div className={'rfid'}>
+            <Search/>
         </div>
     );
 };

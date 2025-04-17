@@ -17,18 +17,6 @@ let Song = function(props) {
             <div className={'song__art'}>
                 <img className={'song__art-image'} src={song.imageUrl}/>
             </div>
-            <div className={'song__info'}>
-                <div className={'song__info-wrapper'}>
-                    <div className={'song__name'}>
-                        {song.name}
-                    </div>
-                </div>
-                <div className={'song__info-wrapper'}>
-                    <div className={'song__artist'}>
-                        {song.artist}
-                    </div>
-                </div>
-            </div>
         </div>
     )
 };

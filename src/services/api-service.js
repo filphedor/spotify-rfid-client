@@ -10,7 +10,6 @@ export default class ApiService {
     }
 
     async isApiConnected() {
-        console.log('asdf')
         let url = this._apiHost + '/is-connected';
 
         try {

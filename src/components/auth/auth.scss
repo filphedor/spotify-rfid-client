@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.auth {
+    float: left;
+
+    display: flex;
+}
+
+.auth__log-in {
+    flex: 0 0 auto;
+}
+
+.auth__info {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+
+    color: $color-highlight;
+}
+
+.auth__user {
+    margin-bottom: 0.5em;
+}
+
+.auth__log-out {
+    font-size: 0.8em;
+    font-weight: 200;
+}

@@ -32,7 +32,6 @@ const TOKEN_KEY = 'spotify-token';
 export default class SpotifyService {
     constructor(options) {
         this._clientId = options.clientId;
-        this._userCache = null;
     }
 
     async authenticate(redirectUri) {
@@ -91,27 +90,28 @@ export default class SpotifyService {
     }
 
     async getUser() {
-        if (this._userCache) {
-            return this._userCache;
-        }
-
         let accessToken = this.getFullToken().access_token;
+
+        if (accessToken) {
         
-        const response = await axios.get('https://api.spotify.com/v1/me', {
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
+            const response = await axios.get('https://api.spotify.com/v1/me', {
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                }
+            });
+
+            const data = response.data;
+
+            if (data.error) {
+                throw new Error(data.error)
             }
-        });
 
-        const data = response.data;
+            this._userCache = data;
 
-        if (data.error) {
-            throw new Error(data.error)
+            return data;
         }
 
-        this._userCache = data;
-
-        return data;
+        return null;
     }
 
     async searchAlbums(search) {

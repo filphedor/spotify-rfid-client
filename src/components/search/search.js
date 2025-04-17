@@ -3,7 +3,7 @@ import './search.scss';
 import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 import Dependencies from '/util/dependencies';
 
@@ -51,7 +51,7 @@ let Search = function() {
                     <div className={'search__hover-content'}>
                         <div className={'search__add-icon-wrapper'}>
                             <div className={'search__add-icon'} onClick={() => handleAdd(song.uri)}>
-                                <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faEdit} />
                             </div>
                          </div>
                     </div>
